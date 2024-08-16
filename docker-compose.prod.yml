@@ -24,8 +24,8 @@ services:
       - 7000
     env_file:
       - ./.env.prod
-    depends_on:
-      - db
+    # depends_on:
+    #   - db
   # db:
   #   image: postgres:15
   #   volumes:
