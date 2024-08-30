@@ -43,6 +43,8 @@ services:
       - 443:443
     depends_on:
       - web
+    networks:
+      - nginx_network
   # certbot:
   #   image: certbot/certbot:latest
   #   volumes:
@@ -50,6 +52,10 @@ services:
   #     - /var/certbot/www/:/var/www/certbot/:rw
   #   depends_on:
   #     - nginx
+
+networks:
+  nginx_network:
+    driver: bridge
 
 volumes:
   postgres_data:

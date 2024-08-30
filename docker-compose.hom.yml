@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  web_hom:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    command: gunicorn hello_django.wsgi:application --bind 0.0.0.0:6000
+    volumes:
+      - static_volume:/home/app/web_hom/staticfiles
+      - /var/certbot/conf:/etc/letsencrypt/:ro
+    expose:
+      - 8000
+    env_file:
+      - ./.env.prod
+  
+networks:
+  nginx_network:
+    driver: bridge
+    
+volumes:
+  static_volume:
